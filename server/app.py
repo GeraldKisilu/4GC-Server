@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
-from routes.auth import auth_bp, bcrypt, jwt, create_resources
+from routes.auth import auth_bp, create_resources  # Remove bcrypt, jwt from here
 from models import db
 
 # Load environment variables
@@ -29,8 +29,8 @@ app.config['MAIL_USE_SSL'] = False
 
 # Initialize extensions
 db.init_app(app)
-bcrypt.init_app(app)
-jwt.init_app(app)
+bcrypt = Bcrypt(app)  # Initialize bcrypt here
+jwt = JWTManager(app)  # Initialize jwt here
 mail = Mail(app)
 migrate = Migrate(app, db)
 

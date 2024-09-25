@@ -11,6 +11,10 @@ from flask_cors import CORS
 # Serializer for tokens (email confirmation, password reset)
 serializer = URLSafeTimedSerializer('We are winners')
 
+# Use bcrypt and jwt that were initialized in app.py
+bcrypt = Bcrypt()
+jwt = JWTManager()
+
 # Define Blueprint and Api
 auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')
 auth_api = Api(auth_bp)
